@@ -1,0 +1,6 @@
+<launch>
+	<!--node pkg="oryxbot_interaction" type="oryxbot_navi" name="oryxbot_navi" output="screen"/-->
+    <node pkg="oryxbot_interaction" type="oryxbot_MultiNav" name="oryxbot_MultiNav" output="screen" >
+    <rosparam file="$(find oryxbot_apply)/param/point.yaml" command="load" />
+    </node>
+</launch>

@@ -1,0 +1,14 @@
+<launch>
+    <!--ar ldentify-->
+	<include file="$(find magician_moveit_config)/launch/moveit_planning_execution.launch" />
+
+	<include file="$(find ar_pose_adjust)/launch/ar_pick_sim.launch"/>
+	<include file="$(find ar_pose_adjust)/launch/ar_start_sim.launch"/>
+
+	<node pkg="oryxbot_interaction" type="oryxbot_navi" name="oryxbot_navi" output="screen"/>
+
+	<include file="$(find oryxbot_arm_controller)/launch/pick_ar_sim.launch"/>
+	<include file="$(find auto_charging)/launch/autocharging_sim.launch"/>
+	<include file="$(find relative_move)/launch/relative_move.launch" />
+
+</launch>

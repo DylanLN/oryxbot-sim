@@ -1,0 +1,10 @@
+controller_list:
+  - name: fake_magician_arm_controller
+    joints:
+      - magician_joint1
+      - magician_joint2
+      - magician_joint3
+  - name: fake_magician_eff_group_controller
+    joints:
+      - finger_joint1
+      - finger_joint2

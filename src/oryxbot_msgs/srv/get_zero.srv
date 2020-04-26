@@ -1,0 +1,6 @@
+bool query_flag
+---
+float64 x
+float64 y
+float64 z
+float64 r

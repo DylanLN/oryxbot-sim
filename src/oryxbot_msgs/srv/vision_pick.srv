@@ -1,0 +1,5 @@
+oryxbot_msgs/point2d camera_pixel	#像素坐标
+bool execute			#是否执行抓取动作
+---
+string message
+bool success

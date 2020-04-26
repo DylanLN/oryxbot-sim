@@ -1,0 +1,4 @@
+<launch>
+	<include file="$(find oryxbot_arm_controller)/launch/arm_controller.launch"/>
+	<node pkg="oryxbot_arm_controller" type="oryxbot_pick_arpy.py" name="oryxbot_pick_ar" output="screen"/>
+</launch>

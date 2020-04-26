@@ -1,0 +1,9 @@
+<launch>
+    <!--打开定向移动节点-->
+    <node pkg="relative_move" type="relative_move_node" name="relative_move" output="screen">
+        <!-- p -->
+        <param name="p" type="double" value="5"/>
+        <!-- 允许误差 -->
+        <param name="err" type="double" value="0.02"/>
+    </node>
+</launch>

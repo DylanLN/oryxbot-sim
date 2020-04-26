@@ -1,0 +1,5 @@
+<launch>
+	<node pkg = "oryxbot_kinematics" type="oryxbot_kinematics_nodepy.py" name="oryxbot_kinematics" output="screen">
+	</node>
+	<node pkg = "oryxbot_kinematics" type="odometrypy.py" name="odometry"/>
+</launch>

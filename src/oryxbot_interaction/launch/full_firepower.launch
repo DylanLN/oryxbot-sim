@@ -1,0 +1,13 @@
+<launch>
+    <!--机器人底盘用-->
+	<include file="$(find oryxbot_navigation)/launch/oryxbot_nav_2d_local_cp.launch"/>   
+	<include file="$(find ar_pose_adjust)/launch/ar_start.launch"/>   
+	<include file="$(find auto_charging)/launch/autocharging.launch"/>   
+	<node pkg="oryxbot_interaction" type="oryxbot_navi" name="oryxbot_navi" output="screen"/>
+
+    <!--机器人手臂用-->
+	<include file="$(find oryxbot_arm_controller)/launch/pick_ar_demo.launch"/>   
+	<include file="$(find ar_pose_adjust)/launch/ar_pick.launch"/>   
+
+
+</launch>

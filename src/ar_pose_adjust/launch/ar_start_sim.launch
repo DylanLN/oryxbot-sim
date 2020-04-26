@@ -1,0 +1,31 @@
+<launch>
+        <!-- 是否打开rviz -->
+        <arg name="open_rviz" default="false" />
+
+        <!--0.0372 0.005 0.046 -->
+    	<arg name="marker_size" default="5" />
+    	<arg name="max_new_marker_error" default="0.08" />
+    	<arg name="max_track_error" default="0.2" />
+    	<arg name="cam_image_topic" default="/usb_cam/usb_cam/image_raw" />
+    	<arg name="cam_info_topic" default="/usb_cam/usb_cam_info" />
+    	<arg name="output_frame" default="usb_cam_link" />
+        
+        <node name="base_ar_ldentify" pkg="ar_track_alvar" type="gazebo_ar_ldentify" required="true" output="screen">
+            <param name="marker_size"           type="double" value="$(arg marker_size)" />
+            <param name="max_new_marker_error"  type="double" value="$(arg max_new_marker_error)" />
+            <param name="max_track_error"       type="double" value="$(arg max_track_error)" />
+            <param name="output_frame"          type="string" value="$(arg output_frame)" />
+
+            <remap from="camera_image"  to="$(arg cam_image_topic)" />
+            <remap from="camera_info"   to="$(arg cam_info_topic)" />
+        </node>
+
+        <!--pub.launch-->
+        <node pkg="ar_pose_adjust" type="getArRPYpose_node" name="getArRPYpose" output="screen"/>
+
+        <node pkg="ar_pose_adjust" type="pose_adjust_sim" name="ar_pose_adjust" output="screen"/>
+        <group if="$(arg open_rviz)"> 
+            <node pkg="rviz" type="rviz" name="rviz" required="true"
+            args="-d $(find ar_pose_adjust)/rviz/ar_marker.rviz"/>
+        </group>
+</launch>

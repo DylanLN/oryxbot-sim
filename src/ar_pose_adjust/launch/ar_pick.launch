@@ -1,0 +1,6 @@
+<launch>
+    <group ns="hand_cam"> <!--此处是手臂摄像头的命名空间-->
+		<include file="$(find ar_pose_adjust)/launch/usb_cam_with.launch"/>
+		<include file="$(find ar_pose_adjust)/launch/ar_track_camera.launch"/>
+	</group>
+</launch>

@@ -1,0 +1,228 @@
+<?xml version="1.0"?>
+<robot name="oryxbot" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+    <!-- Defining the colors used in this robot -->
+    <material name="Black">
+        <color rgba="0 0 0 1"/>
+    </material>
+
+    <material name="White">
+        <color rgba="1 1 1 1"/>
+    </material>
+
+    <material name="Blue">
+        <color rgba="0 0 1 1"/>
+    </material>
+
+    <material name="Red">
+        <color rgba="1 0 0 1"/>
+    </material>
+
+    <!-- PROPERTY LIST -->
+    <!--All units in m-kg-s-radians unit system -->
+    <xacro:property name="M_PI" value="3.1415926535897931" />
+
+    <!-- Main body length, width, height and mass -->
+    <xacro:property name="base_mass"        value="1" /> 
+    <xacro:property name="base_link_radius" value="0.13"/>
+    <xacro:property name="base_link_length" value="0.005"/>
+
+    <xacro:property name="motor_x" value="-0.05"/>
+
+    <!-- Caster radius and mass -->
+    <xacro:property name="caster_radius"          value="0.016" /> 
+    <xacro:property name="caster_mass"            value="0.01" /> 
+    <xacro:property name="caster_joint_origin_x"  value="-0.12" />
+
+    <!-- Wheel radius, height and mass -->
+    <xacro:property name="wheel_radius" value="0.033" /> 
+    <xacro:property name="wheel_height" value="0.017" />
+    <xacro:property name="wheel_mass"   value="0.1" />
+
+    <!-- plate height and mass -->
+    <xacro:property name="plate_mass"   value="0.05"/>
+    <xacro:property name="plate_height" value="0.07"/>
+    <xacro:property name="standoff_x"   value="0.12"/>
+    <xacro:property name="standoff_y"   value="0.10"/>
+
+
+
+    <!-- BASE-FOOTPRINT -->
+    <!-- base_footprint is a fictitious link(frame) that is on the ground right below base_link origin -->
+    <xacro:macro name="oryxbot_body">
+        <link name="base_footprint">
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <box size="0.001 0.001 0.001" />
+                </geometry>
+            </visual>
+        </link>
+
+        <joint name="base_footprint_joint" type="fixed">
+            <origin xyz="0 0 ${wheel_radius}" rpy="0 0 0" />
+            <parent link="base_footprint"/>
+            <child link="base_link" />
+        </joint>
+
+        <!-- BASE-LINK -->
+        <!--Actual body/chassis of the robot-->
+        <link name="base_link">
+            <inertial>
+                <mass value="30" />
+                <inertia ixx="4.2" ixy = "0" ixz = "0"
+                    iyy="5.42" iyz = "0"
+                    izz="2.1" /> 
+            </inertial>
+            <visual>
+                <origin xyz="0.334 -0.05 0" rpy="0 0 -1.570796"/>
+                <geometry>
+                    <mesh filename="package://oryxbot_description/meshes/base_link.STL"/>
+                </geometry>
+                <material name="yellow" />
+            </visual>
+
+            <collision>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <box size="0.3 0.2 0.07"/>
+                </geometry>
+            </collision>   
+        </link>
+
+  <joint name="box_joint" type="fixed">
+    <origin xyz="0 0 0"
+            rpy="0 0 0" />
+    <parent link="base_link" />
+    <child link="box_link" />
+    <axis xyz="0 0 0" />
+  </joint>
+
+  <link name="box_link">
+    <inertial>
+      <origin
+        xyz="6.93889390390723E-18 5.55111512312578E-17 -0.00333728887819676"
+        rpy="0 0 0" />
+      <mass value="0.0613008845396002" />
+      <inertia
+        ixx="0.000126102196183885"
+        ixy="-2.3172366261422E-20"
+        ixz="-9.70144260828533E-21"
+        iyy="0.000126102196183885"
+        iyz="8.61513588913842E-20"
+        izz="0.000251007561260011" />
+    </inertial>
+    <visual>
+        <origin xyz="-0.105 0.0 0.09" rpy="0 0 -1.570796"/>
+      <geometry>
+        <mesh filename="package://oryxbot_description/meshes/box_link.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="1 0 1 1" />
+      </material>
+    </visual>
+    <collision>
+        <origin xyz="-0.105 0.0 0.08" rpy="0 0 -1.570796"/>
+      <geometry>
+        <mesh filename="package://oryxbot_description/meshes/box_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+        <!--link name="base_link">
+            <inertial>
+                <mass value="50" />
+                <inertia ixx="4.2" ixy = "0" ixz = "0"
+                    iyy="5.42" iyz = "0"
+                    izz="2.1" /> 
+            </inertial>
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+                <geometry>
+                    <mesh filename="package://oryxbot_description/meshes/base/base_link.STL"/>
+                </geometry>
+                <material name="yellow" />
+            </visual>
+            <collision>
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+                <geometry>
+                    <mesh filename="package://oryxbot_description/meshes/base/base_link.STL"/>
+                </geometry>
+            </collision>
+        </link-->
+
+
+        <gazebo reference="base_link">
+            <material>Gazebo/White</material>
+        </gazebo>
+
+        <!-- BASE-LINK -->
+        <!--Actual body/chassis of the robot-->
+        <link name="sliding_plate">
+            <inertial>
+                <mass value="10" />
+                <inertia ixx="0.42" ixy = "0" ixz = "0"
+                    iyy="0.542" iyz = "0"
+                    izz="0.21" /> 
+            </inertial>
+            <collision>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <box size="0.3 0.2 0.02"/>
+                </geometry>
+            </collision>   
+        </link>
+
+        <gazebo reference="sliding_plate">
+            <material>Gazebo/Blue</material>
+            <mu1>1</mu1>
+            <mu2>1</mu2>
+        </gazebo>
+        <joint name="sliding_plate_joint" type="fixed">
+            <origin xyz="0 0 -0.06" rpy="0 0 0" />
+            <parent link="base_link"/>
+            <child link="sliding_plate" />
+        </joint>
+
+        <link name="plate_2_link">
+            <cylinder_inertial_matrix  m="0.1" r="0.01" h="0.01" />
+
+            <collision>
+                <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
+                <geometry>
+                    <cylinder length="0.01" radius="0.01"/>
+                </geometry>
+            </collision>
+        </link>
+        <gazebo reference="plate_2_link">
+            <material>Gazebo/Blue</material>
+        </gazebo>
+        <joint name="plate_2_joint" type="fixed">
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <parent link="base_link"/>
+            <child link="plate_2_link" />
+        </joint>
+
+        <gazebo>
+            <plugin name="gazebo_ros_model_velocity" filename="libgazebo_ros_model_velocity.so">
+            <commandTopic>cmd_vel</commandTopic>
+            <outputVelocityTopic>output_vel</outputVelocityTopic>
+            <updateRate>50.0</updateRate>
+            <commandTimeout>0.5</commandTimeout>
+            <odometryTopic>odom</odometryTopic>
+            <odometryFrame>odom</odometryFrame>
+            <odometryRate>20.0</odometryRate>
+            <publishOdometryTf>true</publishOdometryTf>
+            <robotBaseFrame>base_footprint</robotBaseFrame>
+            <gaussianNoiseXY>0.02</gaussianNoiseXY>
+            <gaussianNoiseYaw>0.02</gaussianNoiseYaw>
+            <linearVelocityLimit>1.0</linearVelocityLimit>
+            <angularVelocityLimit>3.0</angularVelocityLimit>
+            <linearAccelerationLimit>1.0</linearAccelerationLimit>
+            <angularAccelerationLimit>3.0</angularAccelerationLimit>
+            <linearJerkLimit>5.0</linearJerkLimit>
+            <angularJerkLimit>50.0</angularJerkLimit>
+            </plugin>
+        </gazebo>
+
+    </xacro:macro>
+</robot>

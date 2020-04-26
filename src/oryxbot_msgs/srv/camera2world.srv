@@ -1,0 +1,4 @@
+oryxbot_msgs/point2d pixel
+---
+string message
+geometry_msgs/Point point

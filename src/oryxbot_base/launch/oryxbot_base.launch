@@ -1,0 +1,5 @@
+<launch>
+	<node pkg="oryxbot_base" type="oryxbot_base_node" name="oryxbot_base_node" output="screen"/>
+	<include file="$(find oryxbot_kinematics)/launch/oryxbot_kinematics.launch" />
+	<include file="$(find relative_move)/launch/relative_move.launch" />
+</launch>

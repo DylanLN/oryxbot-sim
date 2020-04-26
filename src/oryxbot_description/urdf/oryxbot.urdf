@@ -1,0 +1,1102 @@
+<?xml version="1.0"?>
+<robot xmlns:sensor="http://playerstage.sourceforge.net/gazebo/xmlschema/#sensor" xmlns:controller="http://playerstage.sourceforge.net/gazebo/xmlschema/#controller" xmlns:interface="http://playerstage.sourceforge.net/gazebo/xmlschema/#interface" xmlns:xacro="http://ros.org/wiki/xacro" name="oryxbot_base">
+  <link name="base_footprint">
+    <visual>
+      <geometry>
+        <box size="0.001 0.001 0.001"/>
+      </geometry>
+      <origin rpy="0 0 0" xyz="0 0 0.1"/>
+    </visual>
+    <inertial>
+      <mass value="0.0001"/>
+      <inertia ixx="1.0E-10" ixy="0.0" ixz="0.0" iyy="1.0E-10" iyz="0.0" izz="1.0E-10"/>
+    </inertial>
+  </link>
+  <joint name="base_footprint_joint" type="fixed">
+    <origin xyz="0 0 0.1"/>
+    <parent link="base_footprint"/>
+    <child link="base_link"/>
+  </joint>
+  <link name="base_link">
+    <inertial>
+      <origin xyz="-0.00764631169340118 -0.00117969395064395 -0.00183050219448137" rpy="0 0 0"/>
+      <mass value="2.02553831087985"/>
+      <inertia ixx="0.0136360660737575" ixy="-6.20950267617477E-05" ixz="0.000357631312376283" iyy="0.0207282662502369" iyz="0.000100277729999663" izz="0.0259054283159533"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://oryxbot_description/meshes/base/base_link.STL"/>
+      </geometry>
+      <material name="">
+        <color rgba="0.2 0.2 0.2 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://oryxbot_description/meshes/base/base_link.STL"/>
+      </geometry>
+    </collision>
+  </link>
+  <link name="save_box_Link">
+    <inertial>
+      <origin xyz="-4.59354776438659E-15 9.15688820527724E-17 0.0147062883016232" rpy="0 0 0"/>
+      <mass value="0.0971430373914802"/>
+      <inertia ixx="0.000117289160482014" ixy="9.67216938625837E-20" ixz="-3.79126869778932E-18" iyy="0.000117289160482014" iyz="1.90433104035194E-20" izz="0.000201773217764548"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://oryxbot_description/meshes/base/save_box_Link.STL"/>
+      </geometry>
+      <material name="">
+        <color rgba="0.8 0.8 0.8 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://oryxbot_description/meshes/base/save_box_Link.STL"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint name="save_box_Joint" type="fixed">
+    <origin xyz="-0.102321969925639 0 0.07925" rpy="-6.12303176911189E-17 0 0"/>
+    <parent link="base_link"/>
+    <child link="save_box_Link"/>
+    <axis xyz="0 0 0"/>
+  </joint>
+  <link name="depth_camera_Link">
+    <inertial>
+      <origin xyz="-0.000338923518511336 0.00013633625480072 0.0130642403603556" rpy="0 0 0"/>
+      <mass value="0.0429564094829856"/>
+      <inertia ixx="4.42733827556727E-05" ixy="5.1756273672768E-08" ixz="-1.07581469445985E-07" iyy="9.87442464200886E-06" iyz="1.36662846267863E-09" izz="4.20179141036499E-05"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://oryxbot_description/meshes/base/depth_camera_Link.STL"/>
+      </geometry>
+      <material name="">
+        <color rgba="0.8 0.8 0.2 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://oryxbot_description/meshes/base/depth_camera_Link.STL"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint name="depth_camera_Joint" type="fixed">
+    <origin xyz="0.137971242636892 0 0.0679000000000474" rpy="-6.12303176911189E-17 0 0"/>
+    <parent link="base_link"/>
+    <child link="depth_camera_Link"/>
+    <axis xyz="0 0 0"/>
+  </joint>
+  <link name="laser_radar_Link">
+    <inertial>
+      <origin xyz="0.00129965485264849 0.0140721322674916 -0.00450819311932744" rpy="0 0 0"/>
+      <mass value="0.0623789276094434"/>
+      <inertia ixx="6.94639653669307E-05" ixy="8.6185609328867E-07" ixz="-1.9717605542125E-07" iyy="2.93424892981532E-05" iyz="6.39495406735705E-06" izz="7.78608897582073E-05"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://oryxbot_description/meshes/base/laser_radar_Link.STL"/>
+      </geometry>
+      <material name="">
+        <color rgba="0.8 0.2 0.2 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://oryxbot_description/meshes/base/laser_radar_Link.STL"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint name="laser_radar_Joint" type="fixed">
+    <origin xyz="0.10012092451104 0 0.02725" rpy="-6.12303176911189E-17 0 0"/>
+    <parent link="base_link"/>
+    <child link="laser_radar_Link"/>
+    <axis xyz="0 0 0"/>
+  </joint>
+  <link name="control_panel_Link">
+    <inertial>
+      <origin xyz="-1.38777878078145E-17 2.03505737914499E-17 0.0075" rpy="0 0 0"/>
+      <mass value="0.22338"/>
+      <inertia ixx="0.000400985715" ixy="-6.3306622132724E-20" ixz="-2.25875452601147E-21" iyy="0.000197858835" iyz="-8.99944309783044E-21" izz="0.0005904678"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://oryxbot_description/meshes/base/control_panel_Link.STL"/>
+      </geometry>
+      <material name="">
+        <color rgba="0.2 0.2 0.2 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://oryxbot_description/meshes/base/control_panel_Link.STL"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint name="control_panel_Joint" type="fixed">
+    <origin xyz="-0.103733742636892 0 0.03725" rpy="-6.12303176911189E-17 0 0"/>
+    <parent link="base_link"/>
+    <child link="control_panel_Link"/>
+    <axis xyz="0 0 0"/>
+  </joint>
+  <link name="wheel_1_Link">
+    <inertial>
+      <origin xyz="-3.49119389092545E-08 4.8702717014848E-07 -8.62702332904419E-08" rpy="0 0 0"/>
+      <mass value="0.0115715789339179"/>
+      <inertia ixx="4.48576917597745E-06" ixy="-1.24304480702996E-11" ixz="2.9583635995248E-11" iyy="6.65994842603994E-06" iyz="-5.89599770954395E-11" izz="4.48579119615739E-06"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://oryxbot_description/meshes/base/wheel_1_Link.STL"/>
+      </geometry>
+      <material name="">
+        <color rgba="0.7 0.7 0.7 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://oryxbot_description/meshes/base/wheel_1_Link.STL"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint name="wheel_1_Joint" type="fixed">
+    <origin xyz="0.112733742636897 0.134000000000001 -0.0342499999999998" rpy="-6.12303176911189E-17 0 0"/>
+    <parent link="base_link"/>
+    <child link="wheel_1_Link"/>
+    <axis xyz="0 0 0"/>
+  </joint>
+  <link name="roller_1_1_Link">
+    <inertial>
+      <origin xyz="-6.93889390390723E-17 0.000999807094442251 4.16333634234434E-17" rpy="0 0 0"/>
+      <mass value="0.0041465555976513"/>
+      <inertia ixx="4.31863836293642E-07" ixy="-2.50139417236036E-21" ixz="-4.80667813501109E-12" iyy="1.54352178276911E-07" iyz="2.47492439275866E-21" izz="4.31782290635005E-07"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://oryxbot_description/meshes/base/roller_1_1_Link.STL"/>
+      </geometry>
+      <material name="">
+        <color rgba="0.7 0.7 0.7 1"/>
+      </material>
+    </visual>
+  </link>
+  <joint name="roller_1_1_Joint" type="fixed">
+    <origin xyz="0.0207132034355986 -0.000707106781189015 0.0217132034356015" rpy="-0.529902789748729 -0.146975190663391 -0.529902789748729"/>
+    <parent link="wheel_1_Link"/>
+    <child link="roller_1_1_Link"/>
+    <axis xyz="0 0 0"/>
+  </joint>
+  <link name="roller_1_2_Link">
+    <inertial>
+      <origin xyz="-1.38777878078145E-17 0.000999807094442251 -6.93889390390723E-18" rpy="0 0 0"/>
+      <mass value="0.00414655559765128"/>
+      <inertia ixx="4.31863836293638E-07" ixy="-1.2573145310806E-22" ixz="-4.80667813518606E-12" iyy="1.54352178276911E-07" iyz="3.46090947854882E-22" izz="4.31782290635005E-07"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://oryxbot_description/meshes/base/roller_1_2_Link.STL"/>
+      </geometry>
+      <material name="">
+        <color rgba="0.7 0.7 0.7 1"/>
+      </material>
+    </visual>
+  </link>
+  <joint name="roller_1_2_Joint" type="fixed">
+    <origin xyz="-0.000707106781188779 -0.000707106781188793 0.03" rpy="2.60208521396521E-16 0 -0.785398163397448"/>
+    <parent link="wheel_1_Link"/>
+    <child link="roller_1_2_Link"/>
+    <axis xyz="0 0 0"/>
+  </joint>
+  <link name="roller_1_3_Link">
+    <inertial>
+      <origin xyz="-1.38777878078145E-17 0.000999807094442279 1.38777878078145E-17" rpy="0 0 0"/>
+      <mass value="0.00414655559765127"/>
+      <inertia ixx="4.31863836293635E-07" ixy="2.87858853168454E-22" ixz="-4.80667813510373E-12" iyy="1.54352178276911E-07" iyz="3.20946077670575E-22" izz="4.31782290635002E-07"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://oryxbot_description/meshes/base/roller_1_3_Link.STL"/>
+      </geometry>
+      <material name="">
+        <color rgba="0.7 0.7 0.7 1"/>
+      </material>
+    </visual>
+  </link>
+  <joint name="roller_1_3_Joint" type="fixed">
+    <origin xyz="-0.0217132034356014 -0.000707106781189043 0.0207132034355986" rpy="0.52990278974873 0.146975190663391 -0.529902789748729"/>
+    <parent link="wheel_1_Link"/>
+    <child link="roller_1_3_Link"/>
+    <axis xyz="0 0 0"/>
+  </joint>
+  <link name="roller_1_4_Link">
+    <inertial>
+      <origin xyz="1.38777878078145E-17 0.000999807094442279 0" rpy="0 0 0"/>
+      <mass value="0.00414655559765129"/>
+      <inertia ixx="4.31863836293638E-07" ixy="1.11217018297169E-22" ixz="-4.80667813522289E-12" iyy="1.54352178276911E-07" iyz="3.30872245021211E-22" izz="4.31782290635005E-07"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://oryxbot_description/meshes/base/roller_1_4_Link.STL"/>
+      </geometry>
+      <material name=""><color rgba="0.7 0.7 0.7 1"/>&gt;
+      </material>
+    </visual>
+  </link>
+  <joint name="roller_1_4_Joint" type="fixed">
+    <origin xyz="-0.03 -0.000707106781188765 -0.000707106781188793" rpy="0.785398163397448 0 0"/>
+    <parent link="wheel_1_Link"/>
+    <child link="roller_1_4_Link"/>
+    <axis xyz="0 0 0"/>
+  </joint>
+  <link name="roller_1_5_Link">
+    <inertial>
+      <origin xyz="0 0.000999807094442251 -2.77555756156289E-17" rpy="0 0 0"/>
+      <mass value="0.0041465555976513"/>
+      <inertia ixx="4.3186383629364E-07" ixy="-2.9778502051909E-23" ixz="-4.80667813530226E-12" iyy="1.54352178276911E-07" iyz="7.51079996198149E-22" izz="4.31782290635006E-07"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://oryxbot_description/meshes/base/roller_1_5_Link.STL"/>
+      </geometry>
+      <material name="">
+        <color rgba="0.7 0.7 0.7 1"/>
+      </material>
+    </visual>
+  </link>
+  <joint name="roller_1_5_Joint" type="fixed">
+    <origin xyz="-0.0207132034355986 -0.000707106781189043 -0.0217132034356015" rpy="0.52990278974873 -0.146975190663391 0.529902789748729"/>
+    <parent link="wheel_1_Link"/>
+    <child link="roller_1_5_Link"/>
+    <axis xyz="0 0 0"/>
+  </joint>
+  <link name="roller_1_6_Link">
+    <inertial>
+      <origin xyz="0 0.000999807094442196 1.38777878078145E-17" rpy="0 0 0"/>
+      <mass value="0.00414655559765129"/>
+      <inertia ixx="4.3186383629364E-07" ixy="-5.4924792673521E-22" ixz="-4.80667813516948E-12" iyy="1.54352178276911E-07" iyz="1.05435639738534E-22" izz="4.31782290635007E-07"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://oryxbot_description/meshes/base/roller_1_6_Link.STL"/>
+      </geometry>
+      <material name="">
+        <color rgba="0.7 0.7 0.7 1"/>
+      </material>
+    </visual>
+  </link>
+  <joint name="roller_1_6_Joint" type="fixed">
+    <origin xyz="0.000707106781188793 -0.000707106781188793 -0.03" rpy="0 0 0.785398163397448"/>
+    <parent link="wheel_1_Link"/>
+    <child link="roller_1_6_Link"/>
+    <axis xyz="0 0 0"/>
+  </joint>
+  <link name="roller_1_7_Link">
+    <inertial>
+      <origin xyz="0 0.000999807094442209 -1.38777878078145E-17" rpy="0 0 0"/>
+      <mass value="0.00414655559765128"/>
+      <inertia ixx="4.31863836293635E-07" ixy="3.4410713482206E-22" ixz="-4.80667813504418E-12" iyy="1.54352178276911E-07" iyz="1.19114008207636E-22" izz="4.31782290635002E-07"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://oryxbot_description/meshes/base/roller_1_7_Link.STL"/>
+      </geometry>
+      <material name="">
+        <color rgba="0.7 0.7 0.7 1"/>
+      </material>
+    </visual>
+  </link>
+  <joint name="roller_1_7_Joint" type="fixed">
+    <origin xyz="0.0217132034356015 -0.000707106781189043 -0.0207132034355986" rpy="-0.529902789748728 0.14697519066339 0.529902789748728"/>
+    <parent link="wheel_1_Link"/>
+    <child link="roller_1_7_Link"/>
+    <axis xyz="0 0 0"/>
+  </joint>
+  <link name="roller_1_8_Link">
+    <inertial>
+      <origin xyz="2.77555756156289E-17 0.000999807094442348 1.38777878078145E-17" rpy="0 0 0"/>
+      <mass value="0.00414655559765128"/>
+      <inertia ixx="4.31863836293639E-07" ixy="-8.22511969632861E-22" ixz="-4.8066781351909E-12" iyy="1.54352178276911E-07" iyz="-3.04402465419514E-22" izz="4.31782290635006E-07"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://oryxbot_description/meshes/base/roller_1_8_Link.STL"/>
+      </geometry>
+      <material name="">
+        <color rgba="0.7 0.7 0.7 1"/>
+      </material>
+    </visual>
+  </link>
+  <joint name="roller_1_8_Joint" type="fixed">
+    <origin xyz="0.03 -0.000707106781188821 0.000707106781188793" rpy="-0.785398163397448 0 0"/>
+    <parent link="wheel_1_Link"/>
+    <child link="roller_1_8_Link"/>
+    <axis xyz="0 0 0"/>
+  </joint>
+  <link name="wheel_2_Link">
+    <inertial>
+      <origin xyz="9.94518354099916E-07 -3.47615774470844E-07 4.35441263609004E-07" rpy="0 0 0"/>
+      <mass value="0.0115720932718038"/>
+      <inertia ixx="4.48594023888562E-06" ixy="-1.27462413936796E-11" ixz="5.95427391893261E-11" iyy="6.66008980600592E-06" iyz="-5.04101581512295E-11" izz="4.48582634155502E-06"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://oryxbot_description/meshes/base/wheel_2_Link.STL"/>
+      </geometry>
+      <material name="">
+        <color rgba="0.7 0.7 0.7 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://oryxbot_description/meshes/base/wheel_2_Link.STL"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint name="wheel_2_Joint" type="fixed">
+    <origin xyz="0.112733742636895 -0.133999999999999 -0.0342499999999961" rpy="-6.12303176911189E-17 0 0"/>
+    <parent link="base_link"/>
+    <child link="wheel_2_Link"/>
+    <axis xyz="0 0 0"/>
+  </joint>
+  <link name="roller_2_1_Link">
+    <inertial>
+      <origin xyz="-1.38777878078145E-17 0.000999807094442307 0" rpy="0 0 0"/>
+      <mass value="0.00414655559765128"/>
+      <inertia ixx="4.31863836293637E-07" ixy="-4.46677530778635E-22" ixz="-4.80667813523608E-12" iyy="1.54352178276911E-07" iyz="-2.9778502051909E-23" izz="4.31782290635004E-07"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://oryxbot_description/meshes/base/roller_2_1_Link.STL"/>
+      </geometry>
+      <material name="">
+        <color rgba="0.7 0.7 0.7 1"/>
+      </material>
+    </visual>
+  </link>
+  <joint name="roller_2_1_Joint" type="fixed">
+    <origin xyz="0.0217132034356014 -0.000707106781189015 0.0207132034355986" rpy="0.52990278974873 -0.146975190663391 0.529902789748729"/>
+    <parent link="wheel_2_Link"/>
+    <child link="roller_2_1_Link"/>
+    <axis xyz="0 0 0"/>
+  </joint>
+  <link name="roller_2_2_Link">
+    <inertial>
+      <origin xyz="1.38777878078145E-17 0.000999807094442251 -3.03576608295941E-17" rpy="0 0 0"/>
+      <mass value="0.00414655559765128"/>
+      <inertia ixx="4.31863836293636E-07" ixy="-4.56603698129271E-22" ixz="-4.80667813508966E-12" iyy="1.54352178276911E-07" iyz="-2.56064630237828E-22" izz="4.31782290635003E-07"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://oryxbot_description/meshes/base/roller_2_2_Link.STL"/>
+      </geometry>
+      <material name="">
+        <color rgba="0.7 0.7 0.7 1"/>
+      </material>
+    </visual>
+  </link>
+  <joint name="roller_2_2_Joint" type="fixed">
+    <origin xyz="0.000707106781188779 -0.000707106781188738 0.03" rpy="2.60208521396521E-16 0 0.785398163397448"/>
+    <parent link="wheel_2_Link"/>
+    <child link="roller_2_2_Link"/>
+    <axis xyz="0 0 0"/>
+  </joint>
+  <link name="roller_2_3_Link">
+    <inertial>
+      <origin xyz="-1.38777878078145E-17 0.000999807094442251 0" rpy="0 0 0"/>
+      <mass value="0.00414655559765129"/>
+      <inertia ixx="4.31863836293639E-07" ixy="3.30872245021211E-22" ixz="-4.80667813500447E-12" iyy="1.54352178276911E-07" iyz="3.37489689921635E-22" izz="4.31782290635005E-07"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://oryxbot_description/meshes/base/roller_2_3_Link.STL"/>
+      </geometry>
+      <material name="">
+        <color rgba="0.7 0.7 0.7 1"/>
+      </material>
+    </visual>
+  </link>
+  <joint name="roller_2_3_Joint" type="fixed">
+    <origin xyz="-0.0207132034355986 -0.00070710678118896 0.0217132034356015" rpy="-0.529902789748729 0.14697519066339 0.529902789748728"/>
+    <parent link="wheel_2_Link"/>
+    <child link="roller_2_3_Link"/>
+    <axis xyz="0 0 0"/>
+  </joint>
+  <link name="roller_2_4_Link">
+    <inertial>
+      <origin xyz="0 0.000999807094442223 -1.38777878078145E-17" rpy="0 0 0"/>
+      <mass value="0.0041465555976513"/>
+      <inertia ixx="4.31863836293639E-07" ixy="-2.11380593321028E-22" ixz="-4.80667813513264E-12" iyy="1.54352178276911E-07" iyz="2.77932685817817E-22" izz="4.31782290635005E-07"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://oryxbot_description/meshes/base/roller_2_4_Link.STL"/>
+      </geometry>
+      <material name="">
+        <color rgba="0.7 0.7 0.7 1"/>
+      </material>
+    </visual>
+  </link>
+  <joint name="roller_2_4_Joint" type="fixed">
+    <origin xyz="-0.03 -0.000707106781188821 0.000707106781188793" rpy="-0.785398163397448 0 0"/>
+    <parent link="wheel_2_Link"/>
+    <child link="roller_2_4_Link"/>
+    <axis xyz="0 0 0"/>
+  </joint>
+  <link name="roller_2_5_Link">
+    <inertial>
+      <origin xyz="-5.55111512312578E-17 0.000999807094442334 1.38777878078145E-17" rpy="0 0 0"/>
+      <mass value="0.00414655559765128"/>
+      <inertia ixx="4.31863836293638E-07" ixy="-9.92616735063633E-24" ixz="-4.80667813514344E-12" iyy="1.54352178276911E-07" iyz="9.03281228907906E-22" izz="4.31782290635004E-07"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://oryxbot_description/meshes/base/roller_2_5_Link.STL"/>
+      </geometry>
+      <material name="">
+        <color rgba="0.7 0.7 0.7 1"/>
+      </material>
+    </visual>
+  </link>
+  <joint name="rolle_2r_5_Joint" type="fixed">
+    <origin xyz="-0.0217132034356014 -0.000707106781188988 -0.0207132034355986" rpy="-0.52990278974873 -0.146975190663391 -0.529902789748729"/>
+    <parent link="wheel_2_Link"/>
+    <child link="roller_2_5_Link"/>
+    <axis xyz="0 0 0"/>
+  </joint>
+  <link name="roller_2_6_Link">
+    <inertial>
+      <origin xyz="2.77555756156289E-17 0.000999807094442348 -1.38777878078145E-17" rpy="0 0 0"/>
+      <mass value="0.00414655559765126"/>
+      <inertia ixx="4.31863836293635E-07" ixy="4.36751363427999E-22" ixz="-4.80667813509319E-12" iyy="1.5435217827691E-07" iyz="2.36116847928058E-22" izz="4.31782290635003E-07"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://oryxbot_description/meshes/base/roller_2_6_Link.STL"/>
+      </geometry>
+      <material name="">
+        <color rgba="0.7 0.7 0.7 1"/>
+      </material>
+    </visual>
+  </link>
+  <joint name="roller_2_6_Joint" type="fixed">
+    <origin xyz="-0.000707106781188765 -0.000707106781188738 -0.03" rpy="0 0 -0.785398163397448"/>
+    <parent link="wheel_2_Link"/>
+    <child link="roller_2_6_Link"/>
+    <axis xyz="0 0 0"/>
+  </joint>
+  <link name="roller_2_7_Link">
+    <inertial>
+      <origin xyz="-2.77555756156289E-17 0.000999807094442307 -2.77555756156289E-17" rpy="0 0 0"/>
+      <mass value="0.00414655559765127"/>
+      <inertia ixx="4.31863836293635E-07" ixy="-3.01093742969302E-22" ixz="-4.80667813497139E-12" iyy="1.54352178276911E-07" iyz="-4.30133918527574E-22" izz="4.31782290635001E-07"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://oryxbot_description/meshes/base/roller_2_7_Link.STL"/>
+      </geometry>
+      <material name="">
+        <color rgba="0.7 0.7 0.7 1"/>
+      </material>
+    </visual>
+  </link>
+  <joint name="roller_2_7_Joint" type="fixed">
+    <origin xyz="0.0207132034355986 -0.000707106781189015 -0.0217132034356015" rpy="0.52990278974873 0.146975190663391 -0.529902789748729"/>
+    <parent link="wheel_2_Link"/>
+    <child link="roller_2_7_Link"/>
+    <axis xyz="0 0 0"/>
+  </joint>
+  <link name="roller_2_8_Link">
+    <inertial>
+      <origin xyz="2.77555756156289E-17 0.000999807094442279 -2.77555756156289E-17" rpy="0 0 0"/>
+      <mass value="0.00414655559765126"/>
+      <inertia ixx="4.31863836293635E-07" ixy="5.53160878773498E-23" ixz="-4.80667813492758E-12" iyy="1.5435217827691E-07" iyz="-5.9557004103818E-22" izz="4.31782290635001E-07"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://oryxbot_description/meshes/base/roller_2_8_Link.STL"/>
+      </geometry>
+      <material name="">
+        <color rgba="0.7 0.7 0.7 1"/>
+      </material>
+    </visual>
+  </link>
+  <joint name="roller_2_8_Joint" type="fixed">
+    <origin xyz="0.03 -0.000707106781188765 -0.000707106781188793" rpy="0.785398163397448 0 0"/>
+    <parent link="wheel_2_Link"/>
+    <child link="roller_2_8_Link"/>
+    <axis xyz="0 0 0"/>
+  </joint>
+  <link name="wheel_3_Link">
+    <inertial>
+      <origin xyz="-3.50725403996943E-08 4.87027175366528E-07 -8.61096328685917E-08" rpy="0 0 0"/>
+      <mass value="0.0115715788043825"/>
+      <inertia ixx="4.48576910692246E-06" ixy="-1.24408844764669E-11" ixz="2.95581559339796E-11" iyy="6.65994836338677E-06" iyz="-5.89704116223101E-11" izz="4.48579112710188E-06"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://oryxbot_description/meshes/base/wheel_3_Link.STL"/>
+      </geometry>
+      <material name="">
+        <color rgba="0.7 0.7 0.7 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://oryxbot_description/meshes/base/wheel_3_Link.STL"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint name="wheel_3_joint" type="fixed">
+    <origin xyz="-0.112733742636892 -0.134 -0.0342499999999999" rpy="-6.12303176911189E-17 0 0"/>
+    <parent link="base_link"/>
+    <child link="wheel_3_Link"/>
+    <axis xyz="0 0 0"/>
+  </joint>
+  <link name="roller_3_1_Link">
+    <inertial>
+      <origin xyz="-5.55111512312578E-17 0.000999807094442307 5.55111512312578E-17" rpy="0 0 0"/>
+      <mass value="0.00414655559765128"/>
+      <inertia ixx="4.31863836293639E-07" ixy="-1.43267682094184E-21" ixz="-4.80667813487874E-12" iyy="1.54352178276911E-07" iyz="2.22346148654254E-21" izz="4.31782290635002E-07"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://oryxbot_description/meshes/base/roller_3_1_Link.STL"/>
+      </geometry>
+      <material name="">
+        <color rgba="0.7 0.7 0.7 1"/>
+      </material>
+    </visual>
+  </link>
+  <joint name="roller_3_1_Joint" type="fixed">
+    <origin xyz="0.0207132034355986 -0.000707106781189043 0.0217132034356015" rpy="-0.529902789748729 -0.146975190663392 -0.52990278974873"/>
+    <parent link="wheel_3_Link"/>
+    <child link="roller_3_1_Link"/>
+    <axis xyz="0 0 0"/>
+  </joint>
+  <link name="roller_3_2_Link">
+    <inertial>
+      <origin xyz="0 0.000999807094442307 1.04083408558608E-17" rpy="0 0 0"/>
+      <mass value="0.00414655559765128"/>
+      <inertia ixx="4.31863836293635E-07" ixy="3.97046694025453E-23" ixz="-4.80667813502386E-12" iyy="1.54352178276911E-07" iyz="7.50061846387807E-22" izz="4.31782290635002E-07"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://oryxbot_description/meshes/base/roller_3_2_Link.STL"/>
+      </geometry>
+      <material name="">
+        <color rgba="0.7 0.7 0.7 1"/>
+      </material>
+    </visual>
+  </link>
+  <joint name="roller_3_2_Joint" type="fixed">
+    <origin xyz="-0.000707106781188752 -0.000707106781188793 0.03" rpy="2.60208521396521E-16 0 -0.785398163397448"/>
+    <parent link="wheel_3_Link"/>
+    <child link="roller_3_2_Link"/>
+    <axis xyz="0 0 0"/>
+  </joint>
+  <link name="roller_3_3_Link">
+    <inertial>
+      <origin xyz="-1.38777878078145E-17 0.000999807094442307 2.77555756156289E-17" rpy="0 0 0"/>
+      <mass value="0.00414655559765129"/>
+      <inertia ixx="4.31863836293638E-07" ixy="-1.15805285757424E-22" ixz="-4.80667813526917E-12" iyy="1.54352178276911E-07" iyz="3.01093742969302E-22" izz="4.31782290635004E-07"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://oryxbot_description/meshes/base/roller_3_3_Link.STL"/>
+      </geometry>
+      <material name="">
+        <color rgba="0.7 0.7 0.7 1"/>
+      </material>
+    </visual>
+  </link>
+  <joint name="roller_3_3_Joint" type="fixed">
+    <origin xyz="-0.0217132034356014 -0.000707106781189015 0.0207132034355986" rpy="0.52990278974873 0.146975190663391 -0.529902789748729"/>
+    <parent link="wheel_3_Link"/>
+    <child link="roller_3_3_Link"/>
+    <axis xyz="0 0 0"/>
+  </joint>
+  <link name="roller_3_4_Link">
+    <inertial>
+      <origin xyz="-5.55111512312578E-17 0.000999807094442307 -1.38777878078145E-17" rpy="0 0 0"/>
+      <mass value="0.00414655559765126"/>
+      <inertia ixx="4.31863836293633E-07" ixy="-9.24894957481905E-22" ixz="-4.8066781350104E-12" iyy="1.5435217827691E-07" iyz="-5.29395592033938E-23" izz="4.31782290635001E-07"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://oryxbot_description/meshes/base/roller_3_4_Link.STL"/>
+      </geometry>
+      <material name="">
+        <color rgba="0.7 0.7 0.7 1"/>
+      </material>
+    </visual>
+  </link>
+  <joint name="roller_3_4_Joint" type="fixed">
+    <origin xyz="-0.03 -0.000707106781188765 -0.000707106781188786" rpy="0.785398163397448 0 0"/>
+    <parent link="wheel_3_Link"/>
+    <child link="roller_3_4_Link"/>
+    <axis xyz="0 0 0"/>
+  </joint>
+  <link name="roller_3_5_Link">
+    <inertial>
+      <origin xyz="0 0.000999807094442307 -1.38777878078145E-17" rpy="0 0 0"/>
+      <mass value="0.00414655559765126"/>
+      <inertia ixx="4.31863836293633E-07" ixy="0" ixz="-4.8066781350905E-12" iyy="1.5435217827691E-07" iyz="-4.66529865479908E-22" izz="4.31782290635E-07"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://oryxbot_description/meshes/base/roller_3_5_Link.STL"/>
+      </geometry>
+      <material name="">
+        <color rgba="0.7 0.7 0.7 1"/>
+      </material>
+    </visual>
+  </link>
+  <joint name="roller_3_5_Joint" type="fixed">
+    <origin xyz="-0.0207132034355986 -0.000707106781189071 -0.0217132034356015" rpy="0.52990278974873 -0.146975190663391 0.529902789748729"/>
+    <parent link="wheel_3_Link"/>
+    <child link="roller_3_5_Link"/>
+    <axis xyz="0 0 0"/>
+  </joint>
+  <link name="roller_3_6_Link">
+    <inertial>
+      <origin xyz="0 0.000999807094442251 -1.38777878078145E-17" rpy="0 0 0"/>
+      <mass value="0.00414655559765125"/>
+      <inertia ixx="4.31863836293632E-07" ixy="9.26442286059391E-23" ixz="-4.80667813529233E-12" iyy="1.5435217827691E-07" iyz="4.40853339160952E-24" izz="4.31782290634999E-07"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://oryxbot_description/meshes/base/roller_3_6_Link.STL"/>
+      </geometry>
+      <material name="">
+        <color rgba="0.7 0.7 0.7 1"/>
+      </material>
+    </visual>
+  </link>
+  <joint name="roller_3_6_Joint" type="fixed">
+    <origin xyz="0.000707106781188779 -0.000707106781188821 -0.03" rpy="0 0 0.785398163397448"/>
+    <parent link="wheel_3_Link"/>
+    <child link="roller_3_6_Link"/>
+    <axis xyz="0 0 0"/>
+  </joint>
+  <link name="roller_3_7_Link">
+    <inertial>
+      <origin xyz="0 0.000999807094442293 -2.77555756156289E-17" rpy="0 0 0"/>
+      <mass value="0.00414655559765126"/>
+      <inertia ixx="4.31863836293633E-07" ixy="-1.32348898008484E-23" ixz="-4.80667813530226E-12" iyy="1.54352178276911E-07" iyz="-9.92616735063633E-24" izz="4.31782290635E-07"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://oryxbot_description/meshes/base/roller_3_7_Link.STL"/>
+      </geometry>
+      <material name="">
+        <color rgba="0.7 0.7 0.7 1"/>
+      </material>
+    </visual>
+  </link>
+  <joint name="roller_3_7_Joint" type="fixed">
+    <origin xyz="0.0217132034356014 -0.000707106781189099 -0.0207132034355986" rpy="-0.529902789748729 0.146975190663391 0.529902789748729"/>
+    <parent link="wheel_3_Link"/>
+    <child link="roller_3_7_Link"/>
+    <axis xyz="0 0 0"/>
+  </joint>
+  <link name="roller_3_8_Link">
+    <inertial>
+      <origin xyz="0 0.000999807094442293 -2.77555756156289E-17" rpy="0 0 0"/>
+      <mass value="0.00414655559765128"/>
+      <inertia ixx="4.31863836293638E-07" ixy="-2.15950685426026E-22" ixz="-4.80667813528115E-12" iyy="1.54352178276911E-07" iyz="-4.63221143029696E-23" izz="4.31782290635004E-07"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://oryxbot_description/meshes/base/roller_3_8_Link.STL"/>
+      </geometry>
+      <material name="">
+        <color rgba="0.7 0.7 0.7 1"/>
+      </material>
+    </visual>
+  </link>
+  <joint name="roller_3_8_Joint" type="fixed">
+    <origin xyz="0.03 -0.000707106781188849 0.0007071067811888" rpy="-0.785398163397448 0 0"/>
+    <parent link="wheel_3_Link"/>
+    <child link="roller_3_8_Link"/>
+    <axis xyz="0 0 0"/>
+  </joint>
+  <link name="wheel_4_Link">
+    <inertial>
+      <origin xyz="9.94520553007638E-07 -3.47612766071759E-07 4.3543573170074E-07" rpy="0 0 0"/>
+      <mass value="0.0115720932681644"/>
+      <inertia ixx="4.48594023806637E-06" ixy="-1.27450695041583E-11" ixz="5.95422171159268E-11" iyy="6.66008980442039E-06" iyz="-5.04102490053183E-11" izz="4.4858263393441E-06"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://oryxbot_description/meshes/base/wheel_4_Link.STL"/>
+      </geometry>
+      <material name="">
+        <color rgba="0.7 0.7 0.7 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://oryxbot_description/meshes/base/wheel_4_Link.STL"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint name="wheel_4_Joint" type="fixed">
+    <origin xyz="-0.112733742636892 0.134 -0.03425" rpy="-6.12303176911189E-17 0 0"/>
+    <parent link="base_link"/>
+    <child link="wheel_4_Link"/>
+    <axis xyz="0 0 0"/>
+  </joint>
+  <link name="roller_4_1_Link">
+    <inertial>
+      <origin xyz="0 0.000999807094442251 -1.38777878078145E-17" rpy="0 0 0"/>
+      <mass value="0.00414655559765127"/>
+      <inertia ixx="4.31863836293637E-07" ixy="0" ixz="-4.80667813523608E-12" iyy="1.5435217827691E-07" iyz="9.26442286059391E-23" izz="4.31782290635003E-07"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://oryxbot_description/meshes/base/roller_4_1_Link.STL"/>
+      </geometry>
+      <material name="">
+        <color rgba="0.7 0.7 0.7 1"/>
+      </material>
+    </visual>
+  </link>
+  <joint name="roller_4_1_Joint" type="fixed">
+    <origin xyz="0.0217132034356014 -0.000707106781189015 0.0207132034355986" rpy="0.52990278974873 -0.146975190663391 0.529902789748729"/>
+    <parent link="wheel_4_Link"/>
+    <child link="roller_4_1_Link"/>
+    <axis xyz="0 0 0"/>
+  </joint>
+  <link name="roller_4_2_Link">
+    <inertial>
+      <origin xyz="1.38777878078145E-17 0.000999807094442307 -4.33680868994202E-18" rpy="0 0 0"/>
+      <mass value="0.00414655559765127"/>
+      <inertia ixx="4.31863836293636E-07" ixy="-7.27918939046664E-23" ixz="-4.80667813522998E-12" iyy="1.5435217827691E-07" iyz="3.46758589237963E-22" izz="4.31782290635003E-07"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://oryxbot_description/meshes/base/roller_4_2_Link.STL"/>
+      </geometry>
+      <material name="">
+        <color rgba="0.7 0.7 0.7 1"/>
+      </material>
+    </visual>
+  </link>
+  <joint name="roller_4_2_Joint" type="fixed">
+    <origin xyz="0.000707106781188779 -0.000707106781188765 0.03" rpy="2.60208521396521E-16 0 0.785398163397448"/>
+    <parent link="wheel_4_Link"/>
+    <child link="roller_4_2_Link"/>
+    <axis xyz="0 0 0"/>
+  </joint>
+  <link name="roller_4_3_Link">
+    <inertial>
+      <origin xyz="2.08166817117217E-16 0.00099980709444264 -1.66533453693773E-16" rpy="0 0 0"/>
+      <mass value="0.0041465555976511"/>
+      <inertia ixx="4.31863836293611E-07" ixy="8.31481951738303E-21" ixz="-4.80667813757866E-12" iyy="1.54352178276906E-07" iyz="-6.11782781044219E-21" izz="4.31782290634976E-07"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://oryxbot_description/meshes/base/roller_4_3_Link.STL"/>
+      </geometry>
+      <material name="">
+        <color rgba="0.7 0.7 0.7 1"/>
+      </material>
+    </visual>
+  </link>
+  <joint name="roller_4_3_Joint" type="fixed">
+    <origin xyz="-0.0207132034355986 -0.00070710678118896 0.0217132034356014" rpy="-0.529902789748729 0.14697519066339 0.529902789748728"/>
+    <parent link="wheel_4_Link"/>
+    <child link="roller_4_3_Link"/>
+    <axis xyz="0 0 0"/>
+  </joint>
+  <link name="roller_4_4_Link">
+    <inertial>
+      <origin xyz="0 0.00099980709444232 0" rpy="0 0 0"/>
+      <mass value="0.00414655559765128"/>
+      <inertia ixx="4.31863836293637E-07" ixy="4.95383443897663E-23" ixz="-4.80667813508523E-12" iyy="1.54352178276911E-07" iyz="8.60267837055149E-22" izz="4.31782290635004E-07"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://oryxbot_description/meshes/base/roller_4_4_Link.STL"/>
+      </geometry>
+      <material name="">
+        <color rgba="0.7 0.7 0.7 1"/>
+      </material>
+    </visual>
+  </link>
+  <joint name="roller_4_4_Joint" type="fixed">
+    <origin xyz="-0.03 -0.000707106781188765 0.000707106781188793" rpy="-0.785398163397448 0 0"/>
+    <parent link="wheel_4_Link"/>
+    <child link="roller_4_4_Link"/>
+    <axis xyz="0 0 0"/>
+  </joint>
+  <link name="roller_4_5_Link">
+    <inertial>
+      <origin xyz="0 0.000999807094442307 0" rpy="0 0 0"/>
+      <mass value="0.00414655559765124"/>
+      <inertia ixx="4.31863836293631E-07" ixy="1.09187840857E-22" ixz="-4.80667813518314E-12" iyy="1.5435217827691E-07" iyz="-7.2130149414624E-22" izz="4.31782290634998E-07"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://oryxbot_description/meshes/base/roller_4_5_Link.STL"/>
+      </geometry>
+      <material name="">
+        <color rgba="0.7 0.7 0.7 1"/>
+      </material>
+    </visual>
+  </link>
+  <joint name="roller_4_5_Joint" type="fixed">
+    <origin xyz="-0.0217132034356014 -0.000707106781189015 -0.0207132034355986" rpy="-0.52990278974873 -0.146975190663391 -0.529902789748729"/>
+    <parent link="wheel_4_Link"/>
+    <child link="roller_4_5_Link"/>
+    <axis xyz="0 0 0"/>
+  </joint>
+  <link name="roller_4_6_Link">
+    <inertial>
+      <origin xyz="-2.77555756156289E-17 0.000999807094442334 0" rpy="0 0 0"/>
+      <mass value="0.00414655559765127"/>
+      <inertia ixx="4.31863836293637E-07" ixy="-4.89690922631392E-22" ixz="-4.80667813524086E-12" iyy="1.5435217827691E-07" iyz="-1.79756282968646E-22" izz="4.31782290635004E-07"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://oryxbot_description/meshes/base/roller_4_6_Link.STL"/>
+      </geometry>
+      <material name="">
+        <color rgba="0.7 0.7 0.7 1"/>
+      </material>
+    </visual>
+  </link>
+  <joint name="roller_4_6_Joint" type="fixed">
+    <origin xyz="-0.000707106781188779 -0.000707106781188793 -0.03" rpy="0 0 -0.785398163397448"/>
+    <parent link="wheel_4_Link"/>
+    <child link="roller_4_6_Link"/>
+    <axis xyz="0 0 0"/>
+  </joint>
+  <link name="roller_4_7_Link">
+    <inertial>
+      <origin xyz="0 0.000999807094442265 -2.77555756156289E-17" rpy="0 0 0"/>
+      <mass value="0.00414655559765126"/>
+      <inertia ixx="4.31863836293635E-07" ixy="7.94093388050907E-23" ixz="-4.80667813518976E-12" iyy="1.5435217827691E-07" iyz="2.31610571514848E-23" izz="4.31782290635001E-07"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://oryxbot_description/meshes/base/roller_4_7_Link.STL"/>
+      </geometry>
+      <material name="">
+        <color rgba="0.7 0.7 0.7 1"/>
+      </material>
+    </visual>
+  </link>
+  <joint name="roller_4_7_Joint" type="fixed">
+    <origin xyz="0.0207132034355986 -0.000707106781189015 -0.0217132034356014" rpy="0.52990278974873 0.146975190663391 -0.529902789748729"/>
+    <parent link="wheel_4_Link"/>
+    <child link="roller_4_7_Link"/>
+    <axis xyz="0 0 0"/>
+  </joint>
+  <link name="roller_4_8_Link">
+    <inertial>
+      <origin xyz="0 0.000999807094442265 1.38777878078145E-17" rpy="0 0 0"/>
+      <mass value="0.00414655559765128"/>
+      <inertia ixx="4.31863836293638E-07" ixy="-9.13897251964715E-24" ixz="-4.80667813522517E-12" iyy="1.54352178276911E-07" iyz="4.2351647362715E-22" izz="4.31782290635004E-07"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://oryxbot_description/meshes/base/roller_4_8_Link.STL"/>
+      </geometry>
+      <material name="">
+        <color rgba="0.7 0.7 0.7 1"/>
+      </material>
+    </visual>
+  </link>
+  <joint name="roller_4_8_Joint" type="fixed">
+    <origin xyz="0.03 -0.000707106781188821 -0.000707106781188849" rpy="0.785398163397448 0 0"/>
+    <parent link="wheel_4_Link"/>
+    <child link="roller_4_8_Link"/>
+    <axis xyz="0 0 0"/>
+  </joint>
+  <!-- base arm joint -->
+  <joint name="base_arm_joint" type="fixed">
+    <origin xyz="0.05 0 0.06" rpy="0 0 1.57079632"/>
+    <parent link="base_link"/>
+    <child link="arm_base_link"/>
+    <axis xyz="1 0 0"/>
+  </joint>
+  <!--add oryxbot_arm on base -->
+  <link name="arm_base_link">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://oryxbot_description/meshes/arm/base_link.STL"/>
+      </geometry>
+      <material name="White"/>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://oryxbot_description/meshes/arm/base_link.STL"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint name="joint_1" type="revolute">
+    <origin xyz="0 0 0.024" rpy="0 0 0"/>
+    <parent link="arm_base_link"/>
+    <child link="link_1"/>
+    <axis xyz="0 0 1"/>
+    <limit effort="150.0" lower="-3.14159265" upper="3.14159265" velocity="3.15"/>
+  </joint>
+  <link name="link_1">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://oryxbot_description/meshes/arm/link_1.dae"/>
+      </geometry>
+      <!--material name="White"/-->
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://oryxbot_description/meshes/arm/link_1.STL"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint name="joint_2" type="revolute">
+    <origin xyz="-0.01175 0 0.114" rpy="1.570796325 0 -1.570796325"/>
+    <parent link="link_1"/>
+    <child link="link_2"/>
+    <axis xyz="0 0 1"/>
+    <limit effort="150.0" lower="0" upper="1.570796325" velocity="3.15"/>
+  </joint>
+  <link name="link_2">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://oryxbot_description/meshes/arm/link_2.dae"/>
+      </geometry>
+      <!--material name="Black"/-->
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://oryxbot_description/meshes/arm/link_2.STL"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint name="joint_5" type="revolute">
+    <origin xyz="0.02699 0.13228 -0.01175" rpy="0 3.14159265 0"/>
+    <parent link="link_2"/>
+    <child link="link_5"/>
+    <axis xyz="0 0 1"/>
+    <limit effort="150.0" lower="0" upper="1.570796325" velocity="3.15"/>
+  </joint>
+  <link name="link_5">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://oryxbot_description/meshes/arm/link_5.dae"/>
+      </geometry>
+      <!-- material name="White"/-->
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://oryxbot_description/meshes/arm/link_5.dae"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint name="joint_6" type="revolute">
+    <origin xyz="0.07431 -0.12684 0.0" rpy="0 3.14159265 0"/>
+    <parent link="link_5"/>
+    <child link="link_6"/>
+    <axis xyz="0 0 1"/>
+    <limit effort="150.0" lower="-3.14159265" upper="3.14159265" velocity="3.15"/>
+  </joint>
+  <link name="link_6">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://oryxbot_description/meshes/arm/link_6.STL"/>
+      </geometry>
+      <material name="Grey"/>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://oryxbot_description/meshes/arm/link_6.STL"/>
+      </geometry>
+    </collision>
+  </link>
+  <!-- Grasping frame -->
+  <joint name="tool_joint" type="revolute">
+    <parent link="link_6"/>
+    <child link="tool_link"/>
+    <origin xyz="0 0 0" rpy="1.57079632 0 0"/>
+    <limit lower="-3.14159" upper="3.14159" effort="0.1" velocity="0.005"/>
+    <axis xyz="0 0 1"/>
+  </joint>
+  <link name="tool_link">
+    <visual>
+      <origin xyz="0 0 0.015" rpy="0 0 0"/>
+      <geometry>
+        <cylinder radius="0.01" length="0.015"/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0.015" rpy="0 0 0"/>
+      <geometry>
+        <cylinder radius="0.0175" length="0.015"/>
+      </geometry>
+    </collision>
+  </link>
+</robot>

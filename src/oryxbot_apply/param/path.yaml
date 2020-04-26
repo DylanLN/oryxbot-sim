@@ -1,0 +1,92 @@
+###以下是选择路径,默认为/Path0
+PATH: /Path1
+NAME: "path1"
+###以下是路径上的点，起始必须从point0开始，每一个包含它的前节点和后节点。
+###point0前节点填“start”，结束节点填“end”代表结束，填“ring”代表这是一个环形路径。
+Path1:
+  point0:
+    prior: "start"
+    next: /point1
+
+  point1:
+    prior: /point0
+    next: /point2
+
+  point2:
+    prior: /point1
+    next: /point3
+
+  point3:
+    prior: /point2
+    next: /point4
+
+  point4:
+    prior: /point3
+    next: /point5
+
+  point8:
+    prior: /point4
+    next: /point5
+
+
+  point5:
+    prior: /point8
+    next: /point6
+
+  point6:
+    prior: /point5
+    next: /point7
+
+  point9:
+    prior: /point6
+    next: /point10
+
+  point10:
+    prior: /point9
+    next: /point7
+
+  point7:
+    prior: /point10
+    next: end
+
+
+Path0:
+  point0:
+    prior: "start"
+    next: /point7
+
+  point7:
+    prior: /point0
+    next: /point6
+
+  point6:
+    prior: /point7
+    next: /point5
+
+  point5:
+    prior: /point6
+    next: /point4
+
+  point4:
+    prior: /point5
+    next: /point3
+
+  point3:
+    prior: /point4
+    next: /point2
+
+  point2:
+    prior: /point3
+    next: /point1
+
+  point1:
+    prior: /point2
+    next: end
+
+  point9:
+    prior: /point0
+    next: /point8
+
+  point8:
+    prior: /point9
+    next: /point7

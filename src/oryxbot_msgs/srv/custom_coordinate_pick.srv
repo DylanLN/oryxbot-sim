@@ -1,0 +1,5 @@
+geometry_msgs/Point workbench_point    #机器人坐标系下的坐标
+bool execute     #是否执行放置动作
+---
+string message
+bool success

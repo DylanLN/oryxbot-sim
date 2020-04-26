@@ -1,0 +1,33 @@
+<!--                                                                            
+  oryxbot navigation共打开以下launch（功能）:
+  - oryxbot
+  - laser sensor
+  - map_server
+  - move_base
+  - amcl
+  - rviz view
+ --> 
+
+<launch>
+	<!--加载oryxbot model description-->
+  	<param name="robot_description" textfile="$(find oryxbot_description)/urdf/oryxbot_description.urdf" />
+
+  	<node
+	    name="joint_state_publisher"
+	    pkg="joint_state_publisher"
+	    type="joint_state_publisher" />
+  	<node
+	    name="robot_state_publisher"
+	    pkg="robot_state_publisher"
+	    type="state_publisher" />
+	<!--oryxbot底盘-->
+	<include file="$(find oryxbot_base)/launch/oryxbot_base.launch"/>
+	<!--laser sensor激光雷达-->
+	<include file="$(find rplidar_ros)/launch/oryxbot_laser.launch" /> 
+	<!--map_server加载地图-->
+	<include file="$(find oryxbot_navigation)/launch/map_server.launch"/>
+	<!--move_base-->
+	<include file="$(find oryxbot_navigation)/launch/move_base.launch"/>
+	<!--amcl-->
+	<include file="$(find oryxbot_navigation)/launch/amcl.launch"/>
+</launch>

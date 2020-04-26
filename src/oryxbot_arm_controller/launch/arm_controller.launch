@@ -1,0 +1,9 @@
+<launch>
+	<!-- 选择要打开的机械臂，默认为dobot -->
+	<arg name="arm" default="dobot" doc="type[dobot,swiftpro，rarm]"/>
+	<!-- 打开控制节点 -->
+	<node pkg="oryxbot_arm_controller" type="oryxbot_arm_$(arg arm)" name="oryxbot_arm_controller" output="screen">
+	<!--选择串口-->
+	<!--param name="port" value="$(arg arm)"/-->
+	</node>
+</launch>

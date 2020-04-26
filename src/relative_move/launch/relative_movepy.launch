@@ -1,0 +1,4 @@
+<launch>
+    <node pkg="relative_move" type="relative_move_nodepy.py" name="relative_move_nodepy.py" output="screen">
+    </node>
+</launch>

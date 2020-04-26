@@ -1,0 +1,9 @@
+<launch>
+    <node pkg="oryxbot_apply" type="center" name="center" output="screen" >
+    <rosparam file="$(find oryxbot_apply)/param/point.yaml" command="load" />
+    <rosparam file="$(find oryxbot_apply)/param/path.yaml" command="load" />
+    </node>
+    <node pkg="oryxbot_apply" type="center_client" name="center_client" >
+    </node>
+
+</launch>

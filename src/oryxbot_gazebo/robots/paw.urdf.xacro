@@ -1,0 +1,78 @@
+<?xml version="1.0"?>
+<robot name="paw" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+
+    <!-- Left gripper -->
+    <xacro:property name="left_gripper_len" value="0.05" />
+    <xacro:property name="left_gripper_width" value="0.005" />
+    <xacro:property name="left_gripper_height" value="0.03" />
+
+    <!-- Right gripper -->
+    <xacro:property name="right_gripper_len" value="0.05" />
+    <xacro:property name="right_gripper_width" value="0.005" />
+    <xacro:property name="right_gripper_height" value="0.03" />
+    <!-- Inertial matrix -->
+    <xacro:macro name="inertial_matrix" params="mass">
+        <inertial>
+            <mass value="${mass}" />
+            <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="0.5" iyz="0.0" izz="1.0" />
+        </inertial>
+    </xacro:macro>
+    <!-- //////////////////////////////////////   gripper   ////////////////////////////////////////////// -->
+    <!-- LEFT GRIPPER AFT LINK -->
+    <!-- LEFT GRIPPER AFT LINK -->
+    <link name="gripper_finger_link1">
+        <visual>
+            <origin xyz="0.04 -0.04 -0.02"/>
+            <geometry>
+                <box size="${left_gripper_len} ${left_gripper_width} ${left_gripper_height}" />
+            </geometry>
+            <material name="White" />
+        </visual>
+        <collision>
+            <origin xyz="0.04 -0.04 -0.02"/>
+            <geometry>
+                <box size="${left_gripper_len} ${left_gripper_width} ${left_gripper_height}" />
+            </geometry>
+        </collision>
+        <xacro:inertial_matrix mass="0.02"/>
+    </link>
+
+
+    <!-- RIGHT GRIPPER AFT LINK -->
+    <link name="gripper_finger_link2">
+        <visual>
+            <origin xyz="0.04 0.04 -0.02"/>
+            <geometry>
+                <box size="${right_gripper_len} ${right_gripper_width} ${right_gripper_height}" />
+            </geometry>
+            <material name="White" />
+        </visual>
+        <collision>
+            <origin xyz="0.04 0.04 -0.02"/>
+            <geometry>
+                <box size="${right_gripper_len} ${right_gripper_width} ${right_gripper_height}" />
+            </geometry>
+        </collision>
+        <xacro:inertial_matrix mass="0.02"/>
+    </link>
+
+    <!-- Grasping frame -->
+    <link name="grasping_frame"/>
+
+
+    <gazebo reference="gripper_finger_link1">
+        <material>Gazebo/White</material>
+        <!--mu1>100</mu1>
+        <mu2>100</mu2-->
+    </gazebo>
+    <gazebo reference="gripper_finger_link2">
+        <material>Gazebo/White</material>
+        <!--mu1>100</mu1>
+        <mu2>100</mu2-->
+    </gazebo>
+
+
+
+
+</robot>

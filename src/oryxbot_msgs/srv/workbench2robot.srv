@@ -1,0 +1,4 @@
+geometry_msgs/Point workbench_point
+---
+geometry_msgs/Point robot_point
+string message
